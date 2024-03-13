@@ -61,6 +61,7 @@ table tr:hover {
 .action-buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .action-buttons form {
   margin-right: 5px;
@@ -136,6 +137,12 @@ p.empty-cart {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
+}
+
+.producto-container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .producto {
@@ -229,6 +236,17 @@ p {
   text-align: center;
 }
 
+.containerReturnValue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+}
+
+.textValue {
+  font-size: 28px;
+}
+
 .containerBTNReturn {
   display: flex;
   justify-content: center;
@@ -262,13 +280,12 @@ p {
 }
 
 .btnReturnHome:active {
-  margin: 18px;
-  padding: 11.5px;
-  border-top: 4px;
+  margin-top: 20px;
+  padding-top: 8px;
   user-select: none;
 }
 
-.container-Home{
+.container-Home {
   display: flex;
   flex-direction: column;
   justify-content: center;
