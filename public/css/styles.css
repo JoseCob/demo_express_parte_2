@@ -134,14 +134,19 @@ p.empty-cart {
 
 .producto-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));/*Se modifico para mostrar los productos de 3x3 en cada fila*/
   gap: 20px;
 }
 
-.producto {
+.producto {/*Se modifico la categoria de los productos para centrar su contenido*/
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;/*Centra el texto del contenedor del producto*/
 }
 .producto img {
   max-width: 100%;
@@ -156,6 +161,7 @@ p.empty-cart {
   margin-bottom: 10px;
 }
 .producto button {
+  margin-top: 12px;
   padding: 8px 15px;
   background-color: #333;
   color: white;
