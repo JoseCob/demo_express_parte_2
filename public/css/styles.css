@@ -5,7 +5,7 @@ body {
 }
 
 nav {
-  background-color: rgb(238, 82, 220);/*Clase modifica del color #333 a rgb(238, 82, 220)*/
+  background-color: rgb(238, 82, 220);
   color: white;
   padding: 10px 0;
   text-align: center;
@@ -28,7 +28,7 @@ nav ul li a {
   transition: background-color 0.3s;
 }
 nav ul li a:hover {
-  background-color: rgba(241, 2, 213, 0.6);/*clase modificada del color #555 a rgb(241, 2, 213, 0.6)*/
+  background-color: rgba(241, 2, 213, 0.6);
 }
 
 .container {
@@ -219,17 +219,17 @@ p.empty-cart {
   margin-top: 20px;
 }
 
-/*Aqui empieza mis clases modificadas del proyecto para la actividad correspondiente*/
-p{
+p {
   text-align: center;
 }
 
-.containerBTNReturn{/*Contenedor del botón para ir al inicio*/
+.containerBTNReturn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.btnReturnHome{/*Estilo del botón para ir al inicio*/
+
+.btnReturnHome {
   margin-top: 2%;
   font-weight: 900;
   font-size: large;
@@ -243,17 +243,19 @@ p{
   border-radius: 14px;
   border-top: 2px solid rgba(250, 69, 229, 0.6);
   border-bottom: 6px solid rgb(239, 5, 212);
-  border-right: 2px solid rgb(250, 69, 229, 0.6);
-  border-left: 2px solid rgb(250, 69, 229, 0.6);
+  border-right: 2px solid rgba(250, 69, 229, 0.6);
+  border-left: 2px solid rgba(250, 69, 229, 0.6);
 }
-.btnReturnHome:hover{
+
+.btnReturnHome:hover {
   background-color: rgba(255, 0, 225, 0.7);
-  border-top: 2px solid rgb(250, 69, 229, 0.6);
-  border-bottom: 6px solid rgb(255, 0, 225, 0.7);
-  border-right: 2px solid rgb(250, 69, 229, 0.6);
-  border-left: 2px solid rgb(250, 69, 229, 0.6);
+  border-top: 2px solid rgba(250, 69, 229, 0.6);
+  border-bottom: 6px solid rgba(255, 0, 225, 0.7);
+  border-right: 2px solid rgba(250, 69, 229, 0.6);
+  border-left: 2px solid rgba(250, 69, 229, 0.6);
 }
-.btnReturnHome:active{
+
+.btnReturnHome:active {
   margin: 18px;
   padding: 11.5px;
   border-top: 4px;
