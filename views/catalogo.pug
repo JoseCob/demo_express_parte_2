@@ -10,7 +10,7 @@ block content
           h2= producto.nombre
           p= producto.descripcion
           p Disponible: #{producto.cantidad}
-          p Precio: #{producto.precio}
+          p Precio: $#{producto.precio}
           form(action=`/agregar-al-carrito/${producto.id}`, method='POST')
             button(type='submit') Agregar al carrito
   else
