@@ -48,16 +48,33 @@ table {
   border-collapse: collapse;
   margin-bottom: 20px;
 }
+
+thead {
+  background-color: rgba(14, 12, 12, 0.8);
+  color: #fff;
+}
+thead th {
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+}
+
+tbody tr:nth-child(n+2):hover {
+  background-color: #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd):hover {
+  background-color: #f2f2f2;
+}
+
 table th, table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
-}
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-table tr:hover {
-  background-color: #ddd;
 }
 
 .action-buttons {
@@ -92,7 +109,7 @@ table tr:hover {
 
 .procesar-compra-button {
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 14px;
   background-color: #4CAF50;
   color: white;
@@ -101,6 +118,9 @@ table tr:hover {
 }
 .procesar-compra-button:hover {
   background-color: #45a049;
+}
+.procesar-compra-button:active {
+  background-color: #327f33;
 }
 
 p.empty-cart {
@@ -160,7 +180,7 @@ p.empty-cart {
 }
 .producto img {
   max-width: 100%;
-  height: auto;
+  height: 50%;
   margin-bottom: 10px;
 }
 .producto h2 {

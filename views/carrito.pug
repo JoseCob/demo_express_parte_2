@@ -18,7 +18,7 @@ block content
                         td= item.cantidad
                         td= `\$ ${item.precio}`
                         td= `\$ ${(item.precio * item.cantidad)}`
-                        td
+                        td(class="actionTable")
                             .action-buttons
                                 form(action=`/eliminar-del-carrito/${item.id}`, method='POST')
                                     button(type='submit') Eliminar
