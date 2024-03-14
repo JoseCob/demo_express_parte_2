@@ -3,7 +3,7 @@ extends layout
 block content
   .container-Home
     h1 #{title}
-    p Bienvenido a nuestra página de ventas ecommerce.
+    p(class="textHome") Bienvenido a nuestra página de ventas ecommerce.
     form(action='/buscar-producto', method='GET' class='search-bar')
       input(type='text', name='q', placeholder='Buscar producto...')
       button(type='submit') Buscar

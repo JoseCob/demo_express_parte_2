@@ -2,6 +2,7 @@ body
   font-family: "Book Antiqua", sans-serif
   margin: 0
   padding: 0
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6),rgba(255, 238, 238, 0.7))
 
 nav
   background-color: rgb(245, 131, 231)
@@ -58,7 +59,7 @@ tbody tr:nth-child(n+2):hover
   background-color: #ddd
 
 tbody tr:nth-child(even) 
-  background-color: #f2f2f2
+  background-color: rgba(221, 211, 211, 0.3)
 
 tbody tr:nth-child(odd):hover 
   background-color: #f2f2f2
@@ -146,15 +147,19 @@ p.empty-cart
 .producto-container
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
-  gap: 20px
+  gap: 30px
 
 .producto-container2
+  padding: 10px
+  margin: auto 35%
+  margin-top: 5%
   display: flex
   justify-content: center
   align-items: center
 
 .producto
-  border: 1px solid #ccc
+  background-color: rgba(255, 204, 246, 0.322)
+  border: 2px solid rgba(250, 106, 234, 0.644)
   border-radius: 5px
   padding: 20px
   display: flex
@@ -169,13 +174,20 @@ p.empty-cart
     margin-bottom: 10px
 
   h2
+    font-family: 'Lucida Sans'
+    color:#D4AF37
     font-size: 1.5rem
     margin-bottom: 5px
 
   p
+    font-size: 1.1rem
+    font-family: 'Times New Roman'
+    font-weight: 500
     margin-bottom: 10px
 
   button
+    font-size: 15px
+    font-weight: 600
     margin-top: 12px
     padding: 8px 15px
     background-color: #333
@@ -294,3 +306,8 @@ p
   flex-direction: column
   justify-content: center
   height: 75vh
+
+.textHome
+  margin-top: 12px
+  font-family: 'Gill Sans', 'Gill Sans MT'
+  font-size: 24px
