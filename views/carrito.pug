@@ -3,9 +3,6 @@ extends layout
 block content
     h1 #{title}
     if carrito.length > 0
-        .procesar-compra-container
-            form(action='/detalle-compra' method='GET')
-                button(type='submit' class='procesar-compra-button') Procesar compra
         table
             thead
                 tr
@@ -30,5 +27,8 @@ block content
                                 span= item.quantity
                                 form(action=`/actualizar-cantidad/${item.id}/1`, method='POST')
                                     button(type='submit') +
+        .procesar-compra-container
+                form(action='/detalle-compra' method='GET')
+                    button(type='submit' class='procesar-compra-button') Procesar compra
     else
         p No hay productos en el carrito.
