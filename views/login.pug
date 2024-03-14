@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .containerLogin
+        h1(class='titleLogin') #{title}
+            .contentlogin
+                form(action='/Login', method='POST')
+                    strong(class='textLogin') Usuario:
+                    input(class='inpLogin', type="text", placeholder='Introduce Nombre de Usuario')
+                    
+                    strong(class='textLogin') Contraseña:
+                    input(class='inpLogin', type="text", placeholder='Introduce tu Contraseña', autocomplete='off')
+
+                    .containerLoginBTN
+                        button(class='btnLogin', type='submit') Iniciar Sesión
+                        a(class='btnRegister', href='/register') registrarse 

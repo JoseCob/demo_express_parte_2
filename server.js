@@ -24,6 +24,37 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(express.json());
 
+//Ruta para el login
+app.get('/login', (req, res) => {
+    res.render('login', {title: 'Iniciar Sesión' });
+});
+
+//Ruta para el registro
+app.get('/register', (req, res) => {
+    res.render('register', {title: 'Registro'});
+})
+
+//Se crea para guardar los datos de los usuarios
+const usuarios = require('./controllers/usuarios'); // Requiere el archivo usuarios.js
+
+app.post('/addUser', (req, res) => {
+    const { nombres, apellidos, usuario, contraseña } = req.body;
+
+    // Formato de los datos del usuario
+    const userData = {
+        nombres,
+        apellidos,
+        usuario,
+        contraseña
+    };
+
+    // Guardar los datos del usuario utilizando la función agregarUsuario del archivo usuarios.js
+    usuarios.agregarUsuario(userData);
+
+    console.log('Datos del usuario guardados exitosamente:', userData);
+    res.send('Usuario registrado correctamente');
+});
+
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
     res.render('index', { title: 'Página de Bienvenida' });

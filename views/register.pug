@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .containerLogin
+        h1(class='titleLogin') #{title}
+            .contentlogin
+                form(action='/addUser', method='POST')
+
+                    strong(class='textLogin') Nombres:
+                    input(class='inpLogin', type="text", name='nombres', placeholder='Añadir Nombre')
+
+                    strong(class='textLogin') Apellidos:
+                    input(class='inpLogin', type="text", name='apellidos', placeholder='Añadir Apellido')
+
+                    strong(class='textLogin') Usuario:
+                    input(class='inpLogin', type="text", name='usuario', placeholder='Añadir Nombre de Usuario')
+                    
+                    strong(class='textLogin') Contraseña:
+                    input(class='inpLogin', type="text", name='contraseña', placeholder='Añadir una Contraseña', autocomplete='off')
+
+                    .containerLoginBTN
+                        button(class='btnLogin', type='submit') Registrar
+                        a(class='btnRegister', href='/login') Ya tengo Cuenta 
