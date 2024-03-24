@@ -3,6 +3,9 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 const productosController = require('./controllers/productos');
+const fs = require('fs'); // Importa el módulo 'fs' para manejar archivos
+const bodyParser = require('body-parser');/*Biblioteca que permite analizar el cuerpo de las solicitudes HTTP entrantes en Express.js
+"body-parser" puede analizar varios formatos de datos, incluyendo JSON, datos codificados en la URL y datos de formulario.*/
 
 // Configurar middleware para manejar sesiones
 app.use(session({
@@ -32,27 +35,33 @@ app.get('/login', (req, res) => {
 //Ruta para el registro
 app.get('/register', (req, res) => {
     res.render('register', {title: 'Registro'});
-})
+});
 
-//Se crea para guardar los datos de los usuarios
-const usuarios = require('./controllers/usuarios'); // Requiere el archivo usuarios.js
+app.use(bodyParser.urlencoded({ extended: true }));/*configura el middleware body-parser 
+para analizar los datos codificados en la URL Por el metodo POST*/
 
+// Ruta para agregar un nuevo usuario, mediante el formulario del registro
 app.post('/addUser', (req, res) => {
-    const { nombres, apellidos, usuario, contraseña } = req.body;
-
-    // Formato de los datos del usuario
-    const userData = {
+    console.log(req.body); // Verifica los datos del formulario en la consola
+    const { nombres, apellidos, usuario, password } = req.body; // Obtiene los datos del cuerpo de la solicitud
+    // Lee el archivo usuarios.js si existe, o crea un array vacío si no existe
+    let usuarios = [];
+    if (fs.existsSync('usuarios.js')) {
+      const rawData = fs.readFileSync('usuarios.js', 'utf-8');
+      usuarios = JSON.parse(rawData.replace('module.exports =', ''));
+    }
+    // Agrega el nuevo usuario al archivo usuarios.js
+    usuarios.push({
         nombres,
         apellidos,
         usuario,
-        contraseña
-    };
+        password
+    });
+    // Guarda el array de usuarios en el archivo usuarios.js
+    fs.writeFileSync('usuarios.js', `module.exports = ${JSON.stringify(usuarios, null, 2)}`);
 
-    // Guardar los datos del usuario utilizando la función agregarUsuario del archivo usuarios.js
-    usuarios.agregarUsuario(userData);
-
-    console.log('Datos del usuario guardados exitosamente:', userData);
-    res.send('Usuario registrado correctamente');
+    // Redirige al Inicio de Sesión
+    res.redirect('/login'); // Redirige al usuario a la página de inicio de sesión
 });
 
 // Ruta para la página de inicio
