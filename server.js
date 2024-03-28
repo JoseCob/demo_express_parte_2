@@ -19,7 +19,8 @@ app.use(session({
 
 app.use((req, res, next) => {
   res.locals.carrito = req.session.carrito || [];
-  res.locals.usuarioEncontrado = req.session.usuario; /*Permite utilizar la session para los usuarios, en el archivo usuarios.js 
+  res.locals.usuarioEncontrado = req.session.usuario; /*Permite utilizar la session para los usuarios del archivo usuarios.js 
+  para todas las plantillas pug*/
   next();
 });
 
