@@ -7,6 +7,9 @@ const fs = require('fs'); // Importa el módulo 'fs' para manejar archivos
 const bodyParser = require('body-parser');/*Biblioteca que permite analizar el cuerpo de las solicitudes HTTP entrantes en Express.js
 "body-parser" puede analizar varios formatos de datos, incluyendo JSON, datos codificados en la URL y datos de formulario.*/
 
+app.use(bodyParser.urlencoded({ extended: true }));/*configura el middleware body-parser 
+para analizar los datos codificados en la URL Por el metodo POST*/
+
 // Configurar middleware para manejar sesiones
 app.use(session({
   secret: 'secreto', // Clave secreta para firmar la cookie de sesión
@@ -16,6 +19,7 @@ app.use(session({
 
 app.use((req, res, next) => {
   res.locals.carrito = req.session.carrito || [];
+  res.locals.usuarioEncontrado = req.session.usuario; /*Permite utilizar la session para los usuarios, en el archivo usuarios.js 
   next();
 });
 
@@ -32,13 +36,44 @@ app.get('/login', (req, res) => {
     res.render('login', {title: 'Iniciar Sesión' });
 });
 
+// Función de comparación para buscar usuarios
+function findUsuario(usuarios, username, password) {
+    return usuarios.find(user => {
+        // Realizar una comparación considerando los caracteres especiales
+        return user.usuario.toLowerCase() === username.toLowerCase() && user.password === password;
+    });
+}
+
+// Ruta para Validar el inicio de sesión
+app.post('/login', (req, res) => {
+    const { usuario, password } = req.body;
+
+    console.log("----Datos Encontrados----");
+    console.log("Usuario:", usuario);
+    console.log("Contraseña:", password);
+
+    // Importa el archivo de usuarios.js
+    const usuarios = require('./usuarios');
+
+    // Busca el usuario por el nombre de usuario y contraseña utilizando la función de comparación personalizada
+    const usuarioEncontrado = findUsuario(usuarios, usuario, password);
+    
+    if (usuarioEncontrado) {
+        // Iniciar sesión para el usuario
+        req.session.usuario = usuarioEncontrado;
+        console.log('Inicio de sesión exitoso:', usuarioEncontrado.usuario);
+        res.redirect('/'); // Redirige a la página principal
+    } else {
+        console.log('Credenciales incorrectas');
+        console.log(req.body); // Verifica los datos del formulario en la consola
+        res.redirect('/login'); // Redirige de nuevo al formulario de inicio de sesión con un mensaje de error
+    }
+});
+
 //Ruta para el registro
 app.get('/register', (req, res) => {
     res.render('register', {title: 'Registro'});
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));/*configura el middleware body-parser 
-para analizar los datos codificados en la URL Por el metodo POST*/
 
 // Ruta para agregar un nuevo usuario, mediante el formulario del registro
 app.post('/addUser', (req, res) => {
@@ -64,6 +99,19 @@ app.post('/addUser', (req, res) => {
     res.redirect('/login'); // Redirige al usuario a la página de inicio de sesión
 });
 
+// Ruta para cerrar sesión
+app.get('/logout', (req, res) => {
+    // Destruir la sesión
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error al cerrar sesión:', err);
+            res.redirect('/');
+        } else {
+            res.redirect('/login');
+        }
+    });
+});
+  
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
     res.render('index', { title: 'Página de Bienvenida' });

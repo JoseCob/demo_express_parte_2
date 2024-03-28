@@ -4,12 +4,12 @@ block content
     .containerLogin
         h1(class='titleLogin') #{title}
             .contentlogin
-                form(action='/Login', method='POST')
+                form(action='/login', method='POST')
                     strong(class='textLogin') Usuario:
-                    input(class='inpLogin', type="text", placeholder='Introduce Nombre de Usuario')
+                    input(class='inpLogin', type="text", name='usuario', placeholder='Introduce Nombre de Usuario')
                     
                     strong(class='textLogin') Contraseña:
-                    input(class='inpLogin', type="text", placeholder='Introduce tu Contraseña', autocomplete='off')
+                    input(class='inpLogin', type="password", name='password', placeholder='Introduce tu Contraseña', autocomplete='off')
 
                     .containerLoginBTN
                         button(class='btnLogin', type='submit') Iniciar Sesión
