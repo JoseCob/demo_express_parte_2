@@ -108,11 +108,20 @@ app.get('/logout', (req, res) => {
             console.error('Error al cerrar sesión:', err);
             res.redirect('/');
         } else {
-            res.redirect('/login');
+            res.redirect('/');
         }
     });
 });
-  
+
+// Se Obtiene el botón por su id
+const loginButton = document.getElementById('loginButton');
+
+// Se Agrega el evento de clic al botón
+loginButton.addEventListener('click', () => {
+    // Redireccionar al usuario a la página de inicio de sesión
+    window.location.href = '/login';
+});
+
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
     res.render('index', { title: 'Página de Bienvenida' });
