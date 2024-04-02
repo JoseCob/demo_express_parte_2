@@ -7,17 +7,17 @@ block content
                 form(action='/addUser' method='POST')
 
                     label(for="nombres", class='textLogin') Nombres:
-                    input(class='inpLogin', id="nombres", type="text", name='nombres', placeholder='Añadir Nombre')
+                    input(class='inpLogin', id="nombres", type="text", name='nombres', placeholder='Añadir Nombre' autofocus required )
 
                     label(for="apellidos", class='textLogin') Apellidos:
-                    input(class='inpLogin', id="apellidos", type="text", name='apellidos', placeholder='Añadir Apellido')
+                    input(class='inpLogin', id="apellidos", type="text", name='apellidos', placeholder='Añadir Apellido' required)
 
                     label(for="usuario", class='textLogin') Usuario:
-                    input(class='inpLogin', id="usuario", type="text", name='usuario', placeholder='Añadir Nombre de Usuario')
+                    input(class='inpLogin', id="usuario", type="text", name='usuario', placeholder='Añadir Nombre de Usuario' required)
                     
                     label(for="password", class='textLogin') Contraseña:
-                    input(class='inpLogin', id="password", type="password", name='password', placeholder='Añadir una Contraseña', autocomplete='off')
+                    input(class='inpLogin', id="password", type="password", name='password', placeholder='Añadir una Contraseña', autocomplete='off' required)
 
                     .containerLoginBTN
-                        button(class='btnLogin', type='submit') Registrar
+                        button(class='btnLogin', type='submit') Registrarce
                         a(class='btnRegister', href='/login') Ya tengo Cuenta 

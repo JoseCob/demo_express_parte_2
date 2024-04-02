@@ -113,15 +113,6 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// Se Obtiene el botón por su id
-const loginButton = document.getElementById('loginButton');
-
-// Se Agrega el evento de clic al botón
-loginButton.addEventListener('click', () => {
-    // Redireccionar al usuario a la página de inicio de sesión
-    window.location.href = '/login';
-});
-
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
     res.render('index', { title: 'Página de Bienvenida' });
@@ -179,6 +170,12 @@ app.post('/agregar-al-carrito/:id', (req, res) => {
 
 // Ruta para el detalle de compra
 app.get('/detalle-compra', (req, res) => {
+    // Verificar si el usuario ha iniciado sesión
+    if (!req.session.usuario) {
+        // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+        return res.redirect('/login');
+    }
+    
     let carrito = req.session.carrito || []; // Obtiene el carrito de la sesión del usuario, si no existe, crea un nuevo carrito vacío
     res.render('detalle-compra', { title: 'Detalle de Compra', carrito});
 });
@@ -223,6 +220,7 @@ app.post('/eliminar-del-carrito/:id', (req, res) => {
 
 // Middleware para procesar la compra
 app.post('/procesar-compra', (req, res) => {
+
     // Aquí iría la lógica para procesar la compra, por ejemplo, actualizar la base de datos y vaciar el carrito
     const carrito = req.session.carrito || []; // Obtiene el carrito de la sesión del usuario
 
