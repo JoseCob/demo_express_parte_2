@@ -108,11 +108,11 @@ app.get('/logout', (req, res) => {
             console.error('Error al cerrar sesión:', err);
             res.redirect('/');
         } else {
-            res.redirect('/login');
+            res.redirect('/');
         }
     });
 });
-  
+
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
     res.render('index', { title: 'Página de Bienvenida' });
