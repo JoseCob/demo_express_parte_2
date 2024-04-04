@@ -102,20 +102,35 @@ app.post('/addUser', (req, res) => {
 
 // Ruta para cerrar sesión
 app.get('/logout', (req, res) => {
+    const carrito = req.session.carrito || [];
+    const productosEnCarrito = carrito.map(item => ({
+        id: item.id,
+        cantidad: item.cantidad
+    }));
+
+    // Restaurar la cantidad de productos en el catálogo
+    productosEnCarrito.forEach(item => {
+        const producto = productosController.getProductoPorId(item.id);
+        if (producto) {
+            producto.cantidad += item.cantidad;
+        }
+    });
+
+    // Vaciar el carrito
+    req.session.carrito = [];
+
     // Destruir la sesión
     req.session.destroy(err => {
         if (err) {
             console.error('Error al cerrar sesión:', err);
-            res.redirect('/');
-        } else {
-            res.redirect('/');
         }
+        res.redirect('/');
     });
 });
 
 // Ruta para la página de inicio
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Página de Bienvenida' });
+    res.render('index', { title: 'Productos de Belleza' });
 }); 
 
 // Ruta para el catálogo de productos
