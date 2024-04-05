@@ -38,6 +38,10 @@ nav ul li a:hover {
   background-color: rgba(241, 2, 213, 0.6);
 }
 
+.userText {
+  pointer-events: none;
+}
+
 .container {
   max-width: 800px;
   margin: 20px auto;

@@ -36,6 +36,9 @@ nav
         &:hover
           background-color: rgba(241, 2, 213, 0.6)
 
+.userText
+  pointer-events: none
+
 .container
   max-width: 800px
   margin: 20px auto
@@ -95,26 +98,6 @@ table th, table td
   span
     margin: 0 5px
     font-weight: bold
-
-.procesar-compra-container
-  text-align: center
-  margin-bottom: 20px
-
-.procesar-compra-button
-  padding: 12px 20px
-  font-size: 18px
-  border-radius: 14px
-  background-color: #4CAF50
-  color: white
-  border: none
-  cursor: pointer
-
-  &:hover
-    background-color: #45a049
-
-  &:active
-    background-color: #327f33
-
 
 p.empty-cart
   text-align: center
@@ -229,6 +212,11 @@ p.empty-cart
 .button-cancel
   background-color: #f44336
   color: white
+  border-radius: 14px
+  font-size: large
+  padding: 12px
+  user-select: none
+  font-family: Arial, Helvetica, sans-serif
 
 .button-return
   background-color: #008CBA
