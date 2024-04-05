@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6), rgba(255, 238, 238, 0.7));
+  background-image: url(../images/fondo-page.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 nav {
@@ -70,7 +73,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:nth-child(odd):hover {
-  background-color: #f2f2f2;
+  background-color: rgb(255, 255, 255);
 }
 
 table th, table td {
@@ -102,27 +105,6 @@ table th, table td {
 .action-buttons span {
   margin: 0 5px;
   font-weight: bold;
-}
-
-.procesar-compra-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.procesar-compra-button {
-  padding: 12px 20px;
-  font-size: 18px;
-  border-radius: 14px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.procesar-compra-button:hover {
-  background-color: #45a049;
-}
-.procesar-compra-button:active {
-  background-color: #327f33;
 }
 
 p.empty-cart {
@@ -174,7 +156,7 @@ p.empty-cart {
 }
 
 .producto {
-  background-color: rgba(255, 204, 246, 0.322);
+  background-color: rgba(249, 239, 244, 0.465);
   border: 2px solid rgba(250, 106, 234, 0.644);
   border-radius: 5px;
   padding: 20px;
@@ -191,7 +173,7 @@ p.empty-cart {
 }
 .producto h2 {
   font-family: "Lucida Sans";
-  color: #D4AF37;
+  color: hsl(46, 69%, 54%);
   font-size: 1.5rem;
   margin-bottom: 5px;
 }
@@ -246,6 +228,11 @@ p.empty-cart {
 .button-cancel {
   background-color: #f44336;
   color: white;
+  border-radius: 14px;
+  font-size: large;
+  padding: 12px;
+  user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .button-return {

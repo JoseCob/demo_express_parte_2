@@ -27,9 +27,11 @@ block content
                                 span= item.quantity
                                 form(action=`/actualizar-cantidad/${item.id}/1`, method='POST')
                                     button(type='submit') +
-        .procesar-compra-container
+        .button-container
             form(action='/detalle-compra' method='GET')
-                button(type='submit' class='procesar-compra-button') Procesar compra
+                button.button-confirm(type='submit') Procesar compra
+            form(action=`/Delete-all`, method='POST') 
+                button.button-cancel(type='submit') Eliminar todo
     else
         .containerReturnValue
             p(class='textHome') No hay productos en el carrito.

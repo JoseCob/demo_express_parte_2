@@ -149,7 +149,6 @@ app.get('/buscar-producto', (req, res) => {
     res.render('catalogo', { title: 'Resultados de la Búsqueda', productos: productosFiltrados });
 });
 
-
 // Ruta para el detalle de producto
 app.get('/producto/:id', (req, res) => {
     const idProducto = req.params.id;
@@ -230,6 +229,29 @@ app.post('/eliminar-del-carrito/:id', (req, res) => {
       }
     }
     req.session.carrito = carrito; // Actualiza el carrito en la sesión
+    res.redirect('/carrito');
+});
+
+// Ruta para eliminar todos los productos del carrito
+app.post('/Delete-all', (req, res) => {
+    const carrito = req.session.carrito || [];
+    const productosEnCarrito = carrito.map(item => ({
+        id: item.id,
+        cantidad: item.cantidad
+    }));
+
+    // Restaurar la cantidad de productos en el catálogo
+    productosEnCarrito.forEach(item => {
+        const producto = productosController.getProductoPorId(item.id);
+        if (producto) {
+            producto.cantidad += item.cantidad;
+        }
+    });
+    
+    // Vaciar el carrito en la sesión
+    req.session.carrito = [];
+
+    // Redirigir de vuelta al carrito (o a donde desees redirigir después de vaciar el carrito)
     res.redirect('/carrito');
 });
 
