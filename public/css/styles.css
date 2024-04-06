@@ -346,6 +346,11 @@ p {
   font-size: 50px;
   text-transform: uppercase;
 }
+.error-message{
+  margin-top: 5px;
+  font-size: 30px;
+  color: #eb1346;
+}
 
 .contentlogin {
   margin-left: 7.5%;

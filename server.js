@@ -47,14 +47,21 @@ function findUsuario(usuarios, username, password) {
 
 // Ruta para Validar el inicio de sesión
 app.post('/login', (req, res) => {
+    // Importa el archivo de usuarios.js
+    const usuarios = require('./usuarios');
     const { usuario, password } = req.body;
 
     console.log("----Datos Encontrados----");
     console.log("Usuario:", usuario);
     console.log("Contraseña:", password);
 
-    // Importa el archivo de usuarios.js
-    const usuarios = require('./usuarios');
+    // Verificar si se ingresaron usuario y contraseña
+    if (!usuario || !password) {
+        console.log('No se ingresó un usuario y contraseña');
+        console.log(req.body); // Verifica los datos del formulario en la consola
+        res.render('login', { title: 'Iniciar Sesión', errorMessage: 'No se ingresó un usuario y contraseña' });
+        return; // Detiene la ejecución del código para evitar errores adicionales
+    }
 
     // Busca el usuario por el nombre de usuario y contraseña utilizando la función de comparación personalizada
     const usuarioEncontrado = findUsuario(usuarios, usuario, password);
@@ -67,9 +74,10 @@ app.post('/login', (req, res) => {
     } else {
         console.log('Credenciales incorrectas');
         console.log(req.body); // Verifica los datos del formulario en la consola
-        res.redirect('/login'); // Redirige de nuevo al formulario de inicio de sesión con un mensaje de error
+        // Renderiza la plantilla de login con el mensaje de error
+        res.render('login', { title: 'Iniciar Sesión', errorMessage: 'La contraseña o el usuario son incorrectos ⚠️' });
     }
-});
+}); 
 
 //Ruta para el registro
 app.get('/register', (req, res) => {
@@ -189,7 +197,6 @@ app.get('/detalle-compra', (req, res) => {
         // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
         return res.redirect('/login');
     }
-    
     let carrito = req.session.carrito || []; // Obtiene el carrito de la sesión del usuario, si no existe, crea un nuevo carrito vacío
     res.render('detalle-compra', { title: 'Detalle de Compra', carrito});
 });

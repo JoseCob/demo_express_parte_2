@@ -3,14 +3,14 @@ extends layout
 block content
     .containerLogin
         h1(class='titleLogin') #{title}
-            .contentlogin
-                form(action='/login', method='POST')
-                    strong(class='textLogin') Usuario:
-                    input(class='inpLogin', type="text", name='usuario', placeholder='Introduce Nombre de Usuario' autofocus)
-                    
-                    strong(class='textLogin') Contraseña:
-                    input(class='inpLogin', type="password", name='password', placeholder='Introduce tu Contraseña', autocomplete='off')
-
-                    .containerLoginBTN
-                        button(class='btnLogin', type='submit') Inicia Sesión
-                        a(class='btnRegister', href='/register') registrarse 
+        if errorMessage
+            p(class='error-message')= errorMessage
+        .contentlogin
+            form(action='/login', method='POST')
+                strong(class='textLogin') Usuario:
+                input(class='inpLogin', type="text", name='usuario', placeholder='Introduce Nombre de Usuario' autofocus)
+                strong(class='textLogin') Contraseña:
+                input(class='inpLogin', type="password", name='password', placeholder='Introduce tu Contraseña', autocomplete='off')
+                .containerLoginBTN
+                    button(class='btnLogin', type='submit') Inicia Sesión
+                    a(class='btnRegister', href='/register') registrarse 
